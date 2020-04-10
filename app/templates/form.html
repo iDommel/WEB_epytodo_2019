@@ -20,7 +20,15 @@
             </ul>
         </nav>
         <p>
-            Some other content
+            <fieldset>
+                <legend>Form legend</legend>
+                <form action="views.py" method="GET">
+                    <p><label for="name">Name:</label>
+                    <input name="name" id="name" value="" type="text" /></p>
+                    <p><label for="email">mdp:</label>
+                    <input name="mdp" id="mdp" value="" type="text" /></p>
+                </form>
+            </fieldset>
         </p>
     </body>
 
