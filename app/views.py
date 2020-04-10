@@ -29,21 +29,27 @@ def route_all_users ():
         cursor.execute(insert_stuff)##execution de la requete
         cursor.execute("SELECT * FROM user")##execution de la requete
 
-        result = cursor.fetchall ()
+        result = cursor.fetchall()
         connect.commit()
         cursor.close()
         connect.close()
     except Exception as e :
         print("Caught  an  exception : ", e)
+        result = 0
     return jsonify(result)
+
 
 @app.route('/', methods =['GET'])
 def route_index ():
     return render_template("index.html",
-                            title="Hello  World",
+                            title="Index",
                             myContent="My SUPER  content !!")
 
-@app.route('/index', methods =['GET'])
+@app.route('/form', methods =['GET'])
+def route_form():
+    return render_template("form.html",
+                            title="FORM !!!!!!",
+                            myContent="My SUPER FUCKING content !!")
 
 @app.route('/user/<username>', methods =['GET'])
 def route_user(username):
