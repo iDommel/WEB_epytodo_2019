@@ -1,25 +1,24 @@
 <!DOCTYPE  html>
     <html lang="en">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <head>
         <title >{{ title }}</title>
     </head>
 
     <body>
         {% set  navlist = [
-            ('/products ', 'products ', 'Products '),
+            ('/', 'home', 'Home'),
             ('/register ', 'register ', 'Register '),
             ('/account ', 'account ', 'Account ')
         ]  -%}
-        <nav>
+        <nav class="navbar">
             <ul>
-            {% for href , id , caption  in  navlist  %}
-                <li><a id="{{ id|e }}" href="{{ href|e }}">{{ caption|e }}</a></li>
-            {%  endfor  %}
+                {% for href , id , caption  in  navlist  %}
+                    <li class ="left-style"><a id="{{ id|e }}" href="{{ href|e }}">{{ caption|e }}</a></li>
+                {% endfor %}
+                <li class="right-style"><a>Sign in</a></li>
             </ul>
         </nav>
-        <p>
-            {{ myContent }}
-        </p>
+        {% block content %}{% endblock %}
     </body>
-
 </html>
