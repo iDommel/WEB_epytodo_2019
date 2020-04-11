@@ -7,24 +7,47 @@
 
 from flask import render_template
 from app import app
+from app import *
+from app.controller import Controller
 from  flask  import  jsonify
 import  pymysql  as sql
 
 user='root'
 
+@app.route('/', methods =['GET'])
+def route_index ():
+    control = Controller("Home", "Index content")
+    return control.index_action()
 
-@app.route('/user')
+@app.route('/register', methods =['GET'])
+def route_register():
+    control = Controller("Register Page", "Register content")
+    return control.register_action()
+
+@app.route('/signin', methods =['POST'])
+def route_signin ():
+    control = Controller("Signin Page", "Signin content")
+    return control.index_action()
+
+@app.route('/signout', methods =['POST'])
+def route_signout ():
+    control = Controller("Signout Page", "Signout content")
+    return control.index_action()
+
+@app.route('/user', methods =['GET'])
 def route_all_users ():
     try:
+        """ name = GET['name']
+        mdp = _GET['mdp'] """
         insert_stuff = (
             "INSERT INTO user (username, password)\
-            VALUES ('bob','bob')"
+            VALUES ('name','mdp')"
         )
         connect = sql.connect(host='localhost',
                         unix_socket='/var/lib/mysql/mysql.sock',
                         user=user,
-                        passwd='Fnzatpez1.',
-                        db='new_schema')##connectionbd
+                        passwd='sdfmovieconquest1',
+                        db='epytodo')##connectionbd
         cursor = connect.cursor ()##ini de la requete
         cursor.execute(insert_stuff)##execution de la requete
         cursor.execute("SELECT * FROM user")##execution de la requete
@@ -38,29 +61,17 @@ def route_all_users ():
         result = 0
     return jsonify(result)
 
+@app.route('/user/task', methods =['GET'])
+def route_view_tasks():
+    control = Controller("Tasks Page", "Your tasks")
+    return control.index_action()
 
-@app.route('/', methods =['GET'])
-def route_index ():
-    return render_template("index.html",
-                            title="Index",
-                            myContent="My SUPER  content !!")
+@app.route('/user/task/id', methods =['GET'])
+def route_view_specific_task():
+    control = Controller("Task Page", "A task")
+    return control.index_action()
 
-@app.route('/form', methods =['GET'])
-def route_form():
-    return render_template("form.html",
-                            title="FORM !!!!!!",
-                            myContent="My SUPER FUCKING content !!")
-
-@app.route('/user/<username>', methods =['GET'])
-def route_user(username):
-    return render_template("index.html",
-                            title="Hello " + username,
-                            myContent="My SUPER content for " + username + "!!!")
-
-def route_home ():
-    return "Hello  world!\n"
-
-@app.route('/user/<username>', methods =['POST'])
-
-def route_add_user(username):
-    return "User  added!\n"
+@app.route('/user/task/id', methods =['POST'])
+def route_update_specific_task():
+    control = Controller("Task Page", "Update a task")
+    return control.index_action()

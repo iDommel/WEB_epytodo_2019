@@ -1,5 +1,4 @@
 <!DOCTYPE  html>
-
     <html lang="en">
     <head>
         <title >{{ title }}</title>
@@ -7,9 +6,8 @@
 
     <body>
         {% set  navlist = [
-            ('/', 'index ', 'Index '),
             ('/products ', 'products ', 'Products '),
-            ('/form ', 'form ', 'Form '),
+            ('/register ', 'register ', 'Register '),
             ('/account ', 'account ', 'Account ')
         ]  -%}
         <nav>
@@ -20,9 +18,8 @@
             </ul>
         </nav>
         <p>
-            Some  content
+            {{ myContent }}
         </p>
-
     </body>
 
 </html>
