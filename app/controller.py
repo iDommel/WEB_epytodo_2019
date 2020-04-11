@@ -7,7 +7,7 @@
 
 from app import *
 from app.models import *
-from flask import render_template
+from flask import render_template, request
 
 class Controller(object):
 
@@ -17,10 +17,13 @@ class Controller(object):
 
     def index_action(self):
         return render_template("index.html",
-                            title = self.title,
-                            myContent = self.myContent)
+                                title = self.title,
+                                )
 
     def register_action(self):
+        if request.method == 'POST':
+            name = request.form['name']
+            password = request.form['password']
+            print(name, password)
         return render_template("register.html",
-                            title = self.title,
-                            myContent = self.myContent)
+                                title = self.title)

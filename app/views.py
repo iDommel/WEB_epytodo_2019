@@ -5,23 +5,21 @@
 ## views
 ##
 
-from flask import render_template
+from flask import Flask, render_template, jsonify, request
 from app import app
-from app import *
 from app.controller import Controller
-from  flask  import  jsonify
-import  pymysql  as sql
+import  pymysql as sql
 
-user='root'
+app.config['SECRET_KEY'] = 'codex'
 
 @app.route('/', methods =['GET'])
 def route_index ():
     control = Controller("Home", "Index content")
     return control.index_action()
 
-@app.route('/register', methods =['GET'])
+@app.route('/register', methods =['GET', 'POST'])
 def route_register():
-    control = Controller("Register Page", "Register content")
+    control = Controller("Register Page", "register.html")
     return control.register_action()
 
 @app.route('/signin', methods =['POST'])
@@ -37,8 +35,7 @@ def route_signout ():
 @app.route('/user', methods =['GET'])
 def route_all_users ():
     try:
-        """ name = GET['name']
-        mdp = _GET['mdp'] """
+        user = 'root'
         insert_stuff = (
             "INSERT INTO user (username, password)\
             VALUES ('name','mdp')"
@@ -47,8 +44,8 @@ def route_all_users ():
                         unix_socket='/var/lib/mysql/mysql.sock',
                         user=user,
                         passwd='sdfmovieconquest1',
-                        db='epytodo')##connectionbd
-        cursor = connect.cursor ()##ini de la requete
+                        db='epytodo')##connect to database
+
         cursor.execute(insert_stuff)##execution de la requete
         cursor.execute("SELECT * FROM user")##execution de la requete
 

@@ -1,32 +1,17 @@
-<!DOCTYPE  html>
 
-    <html lang="en">
-    <head>
-        <title >{{ title }}</title>
-    </head>
+{% extends "index.html" %}
 
-    <body>
-        {% set  navlist = [
-            ('/', 'index ', 'Index '),
-        ]  -%}
-        <nav>
-            <ul>
-            {% for href , id , caption  in  navlist  %}
-                <li><a id="{{ id|e }}" href="{{ href|e }}">{{  caption|e }}</a></li>
-            {%  endfor  %}
-            </ul>
-        </nav>
-        <p>
-            <fieldset>
-                <legend>Form legend</legend>
-                <form action="views.py" method="GET">
-                    <p><label for="name">Name:</label>
-                    <input name="name" id="name" value="" type="text" /></p>
-                    <p><label for="email">mdp:</label>
-                    <input name="mdp" id="mdp" value="" type="text" /></p>
-                </form>
-            </fieldset>
-        </p>
-    </body>
-
-</html>
+{% block content %}
+<p>
+    <fieldset>
+        <legend>Sign up</legend>
+        <form action="/register" method="POST">
+            <p><label for="name">Name:</label>
+            <input name="name" id="name" value="" type="text" /></p>
+            <p><label for="email">Password:</label>
+            <input name="password" id="mdp" value="" type="text" /></p>
+            <button type="submit" value="submit">Submit</button>
+        </form>
+    </fieldset>
+</p>
+{% endblock %}
