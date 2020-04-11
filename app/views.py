@@ -45,7 +45,7 @@ def route_all_users ():
                         user=user,
                         passwd='sdfmovieconquest1',
                         db='epytodo')##connect to database
-
+        cursor = connect.cursor()
         cursor.execute(insert_stuff)##execution de la requete
         cursor.execute("SELECT * FROM user")##execution de la requete
 
