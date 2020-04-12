@@ -26,8 +26,11 @@
     <nav class="navbar navbar-expand-lg navbar-primary bg-dark">
       <div class="row">
         <div class="col"><a class="navbar-brand">EpyTodo</a></div>
-        <div class="col"><a class="nav-link dark" href="/">Home</a></div>
-        <div class="col"><a class="nav-link" href="/register">Register</a></div>
+        {% for ref, name, caption in navlist %}
+          <div class="col">
+            <a class="nav-link dark" name="{{ name }}" href="{{ ref }}">{{ caption }}</a>
+          </div>
+        {% endfor %}
       </div>
     </nav>
 
