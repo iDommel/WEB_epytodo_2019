@@ -8,7 +8,7 @@
 import pymysql as sql
 from flask import render_template
 
-pwd = 'Fnzatpez1.'
+pwd = 'sdfmovieconquest1'
 user = 'root'
 
 class Models(object):
@@ -74,8 +74,19 @@ class Models(object):
                             passwd=pwd,
                             db='epytodo')
             cursor = connect.cursor()
+            cursor.execute("SELECT * FROM user_has_task")
+            user_and_task_id_tab = cursor.fetchall()
             cursor.execute("SELECT * FROM task")
-            result = cursor.fetchall()
+            tasks_tab = cursor.fetchall()
+            task_id_tab = []
+            for elem in user_and_task_id_tab:
+                if (elem[0] == self.user_id):
+                    task_id_tab.append(elem)
+            result = []
+            for elem in task_id_tab:
+                for task in tasks_tab:
+                    if elem[1] == task[0]:
+                        result.append(task)
             connect.commit()
             cursor.close()
             connect.close()
