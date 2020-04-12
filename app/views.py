@@ -8,7 +8,7 @@
 from flask import Flask, render_template, jsonify, request
 from app import app
 from app.controller import Controller
-import  pymysql as sql
+import pymysql as sql
 
 app.config['SECRET_KEY'] = 'codex'
 

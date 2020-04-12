@@ -5,8 +5,8 @@
 ## controller
 ##
 
-from app import *
-from app.models import *
+from app import app
+from app.models import User, Task
 from flask import render_template, request
 import pymysql as sql
 
