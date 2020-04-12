@@ -57,7 +57,7 @@ DROP TABLE IF EXISTS `user_has_task`;
 CREATE TABLE `user_has_task` (
   `fk_user_id` int(11) NOT NULL,
   `fk_task_id` int(11) NOT NULL,
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

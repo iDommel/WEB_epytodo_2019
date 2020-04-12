@@ -111,12 +111,14 @@ class Controller(object):
                 connect.commit()
                 try:
                     task_id = cursor.execute("SELECT task_id FROM task ORDER BY task_id DESC")
-                    cursor.execute("INSERT INTO user_has_task (fk_user_id, fk_task_id) VALUES ('" + str(self.user_id) + "','" + task_id + "')")
+                    cursor.execute("INSERT INTO user_has_task (fk_user_id, fk_task_id) VALUES ('" + str(self.user_id) + "','" + str(task_id) + "')")
                 except Exception as e :
                     print("Caught  an  exception : ", e)
+                    print("has_task_fail")
                 connect.commit()
                 cursor.close()
                 connect.close()
         except Exception as e :
             print("Caught  an  exception : ", e)
+            print("add_task_fail")
         return self.display_task_action()
