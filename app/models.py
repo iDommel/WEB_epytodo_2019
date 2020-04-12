@@ -56,7 +56,7 @@ class Models(object):
                     cursor.close()
                     connect.close()
                     print (username + " ? " + elem[0])
-                    return render_template("alerts/invalid_logs_reg.html")
+                    return render_template("alerts/invalid_logs_reg.html", username = username)
             cursor.execute(insert_stuff)
             connect.commit()
             cursor.close()
@@ -64,7 +64,7 @@ class Models(object):
             return render_template("register.html")
         except Exception as e :
             print("Caught  an  exception : ", e)
-            return render_template("alerts/invalid_logs_reg.html")
+            return render_template("alerts/invalid_logs_reg.html", username = username)
 
     def display_task_model(self):
         try:
@@ -102,7 +102,7 @@ class Models(object):
                     if i[2] == password:
                         self.user_id = i[0]
                         return render_template("alerts/logged_in.html", username = username)
-            return render_template("alerts/invalid_logs.html")
+            return render_template("alerts/invalid_logs.html", username = username)
         except Exception as ex :
             print("Caught  an  exception : ", ex)
-            return render_template("signin.html")
+            return render_template("signin.html", username = username)

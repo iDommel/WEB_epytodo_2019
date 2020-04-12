@@ -25,7 +25,7 @@ def route_register():
 def route_signin ():
     return control.signin_action()
 
-@app.route('/signout', methods =['POST'])
+@app.route('/signout', methods =['POST', 'GET'])
 def route_signout ():
     return control.index_action()
 

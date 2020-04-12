@@ -28,7 +28,7 @@ class Controller(object):
             if (len(username) == 0 or len(password) == 0):
                 return render_template("alerts/invalid_logs_reg.html")
             return self.models.register_model(username, password)
-        return render_template("register.html")
+        return render_template("register.html", username = self.username)
 
     def signout_action(self):
         if self.models.user_id != -1:
