@@ -1,6 +1,6 @@
 -- MySQL dump 10.17  Distrib 10.3.22-MariaDB, for Linux (x86_64)
 --
--- Host: localhost    Database: new_schema
+-- Host: localhost    Database: epytodo
 -- ------------------------------------------------------
 -- Server version	10.3.22-MariaDB
 
@@ -25,21 +25,12 @@ DROP TABLE IF EXISTS `task`;
 CREATE TABLE `task` (
   `task_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(45) NOT NULL,
-  `begin` date NOT NULL,
-  `end` date NOT NULL,
+  `begin` varchar(45) NOT NULL,
+  `end` varchar(45) NOT NULL,
   `status` tinyint(4) NOT NULL,
   PRIMARY KEY (`task_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `task`
---
-
-LOCK TABLES `task` WRITE;
-/*!40000 ALTER TABLE `task` DISABLE KEYS */;
-/*!40000 ALTER TABLE `task` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `user`
@@ -53,18 +44,8 @@ CREATE TABLE `user` (
   `username` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user`
---
-
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'bob','bob'),(9,'bob','bob'),(99,'bob','bob');
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `user_has_task`
@@ -74,19 +55,12 @@ DROP TABLE IF EXISTS `user_has_task`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_has_task` (
-  `fk_user_id` int(11) DEFAULT NULL,
-  `fk_task_id` int(11) DEFAULT NULL
+  `fk_user_id` int(11) NOT NULL,
+  `fk_task_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user_has_task`
---
-
-LOCK TABLES `user_has_task` WRITE;
-/*!40000 ALTER TABLE `user_has_task` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user_has_task` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -97,4 +71,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-10 23:32:47
+-- Dump completed on 2020-04-12 18:36:06
