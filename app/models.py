@@ -8,10 +8,10 @@
 import pymysql as sql
 from flask import render_template
 
-pwd = 'sdfmovieconquest1'
+pwd = 'Fnzatpez1.'
 user = 'root'
 
-class models(object):
+class Models(object):
 
     def __init__(self, user_id):
         self.user_id = user_id
