@@ -26,7 +26,7 @@ class Controller(object):
 
     def register_action(self):
         if request.method == 'POST':
-            name = request.form['name']
+            name = request.form['username']
             password = request.form['password']
             print(name, password)
         return render_template("register.html",
