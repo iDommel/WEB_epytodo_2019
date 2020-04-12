@@ -61,7 +61,7 @@ def route_all_users ():
 @app.route('/user/task', methods =['GET'])
 def route_view_tasks():
     control = Controller("Tasks Page", "Your tasks")
-    return control.index_action()
+    return control.display_task_action()
 
 @app.route('/user/task/id', methods =['GET'])
 def route_view_specific_task():
@@ -71,4 +71,14 @@ def route_view_specific_task():
 @app.route('/user/task/id', methods =['POST'])
 def route_update_specific_task():
     control = Controller("Task Page", "Update a task")
+    return control.index_action()
+
+@app.route('/user/task/add', methods =['POST'])
+def route_add_task():
+    control = Controller("Task Page", "Add task")
+    return control.add_task_action()
+
+@app.route('/user/task/del/id', methods =['POST'])
+def route_del_task():
+    control = Controller("Task Page", "Del task")
     return control.index_action()
