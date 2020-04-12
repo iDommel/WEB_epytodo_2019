@@ -56,8 +56,8 @@ class Controller(object):
         if request.method == 'POST':
             username = request.form['username']
             password = request.form['password']
-            # if (len(username) == 0 or len(password) == 0):
-            #     return render_template("alerts/invalid_logs.html")
+            if (len(username) == 0 or len(password) == 0):
+                return render_template("alerts/invalid_logs.html")
             try:
                 connect = sql.connect(host='localhost',
                                 unix_socket='/var/lib/mysql/mysql.sock',
