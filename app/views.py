@@ -11,25 +11,22 @@ from app.controller import Controller
 import pymysql as sql
 
 app.config['SECRET_KEY'] = 'codex'
+control = Controller(-1)
 
 @app.route('/', methods =['GET'])
 def route_index ():
-    control = Controller("Home", "Index content")
     return control.index_action()
 
-@app.route('/register', methods =['GET', 'POST'])
+@app.route('/register', methods =['POST', 'GET'])
 def route_register():
-    control = Controller("Register Page", "register.html")
     return control.register_action()
 
-@app.route('/signin', methods =['POST'])
+@app.route('/signin', methods =['POST', 'GET'])
 def route_signin ():
-    control = Controller("Signin Page", "Signin content")
-    return control.index_action()
+    return control.signin_action()
 
 @app.route('/signout', methods =['POST'])
 def route_signout ():
-    control = Controller("Signout Page", "Signout content")
     return control.index_action()
 
 @app.route('/user', methods =['GET'])
@@ -60,25 +57,20 @@ def route_all_users ():
 
 @app.route('/user/task', methods =['GET'])
 def route_view_tasks():
-    control = Controller("Tasks Page", "Your tasks")
     return control.display_task_action()
 
 @app.route('/user/task/id', methods =['GET'])
 def route_view_specific_task():
-    control = Controller("Task Page", "A task")
     return control.index_action()
 
 @app.route('/user/task/id', methods =['POST'])
 def route_update_specific_task():
-    control = Controller("Task Page", "Update a task")
     return control.index_action()
 
 @app.route('/user/task/add', methods =['POST'])
 def route_add_task():
-    control = Controller("Task Page", "Add task")
     return control.add_task_action()
 
 @app.route('/user/task/del/id', methods =['POST'])
 def route_del_task():
-    control = Controller("Task Page", "Del task")
     return control.index_action()
