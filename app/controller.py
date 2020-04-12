@@ -10,6 +10,10 @@ from app.models import *
 from flask import render_template, request
 import pymysql as sql
 
+
+pwd = 'Fnzatpez1.'
+user = 'root'
+
 class Controller(object):
 
     def __init__(self, title, myContent):
@@ -30,11 +34,10 @@ class Controller(object):
 
     def display_task_action(self):
         try:
-            user = 'root'
             connect = sql.connect(host='localhost',
                             unix_socket='/var/lib/mysql/mysql.sock',
                             user=user,
-                            passwd='sdfmovieconquest1',
+                            passwd=pwd,
                             db='epytodo')##connect to database
             cursor = connect.cursor()
             cursor.execute("SELECT * FROM task")##execution de la requete
@@ -56,14 +59,13 @@ class Controller(object):
             end = request.form['end']
             status = request.form['status']
         try:
-            user = 'root'
             insert_stuff = (
                 "INSERT INTO task (title, begin, end, status) VALUES ('" + task + "','" + begin + "','" + end + "','" + status + "')"
             )
             connect = sql.connect(host='localhost',
                             unix_socket='/var/lib/mysql/mysql.sock',
                             user=user,
-                            passwd='sdfmovieconquest1',
+                            passwd=pwd,
                             db='epytodo')##connect to database
             cursor = connect.cursor()
             cursor.execute(insert_stuff)##execution de la requete
