@@ -1,1 +1,11 @@
-*.pyc
+*
+!/app
+!.gitgnore
+!run.py
+!epytodo.sql
+!config.py
+
+/app/*
+!/static
+!/templates
+!*.py
