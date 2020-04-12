@@ -1,49 +1,40 @@
-{% extends "index.html" %} {% block content %}
-<div class="container-fluid">
-  <div class="container">
-    <fieldset>
-      <legend>User tasks</legend>
-      <table style="width: 100%;">
+
+{% extends "index.html" %}
+{% block content %}
+
+<fieldset>
+    <legend>User tasks</legend>
+    <table style="width:100%">
         <tr>
-          <th>ID</th>
-          <th>TASK</th>
-          <th>BEGIN</th>
-          <th>END</th>
-          <th>STATUS</th>
+        <th>ID</th>
+        <th>TASK</th>
+        <th>BEGIN</th>
+        <th>END</th>
+        <th>STATUS</th>
         </tr>
         {% for elem in tables %}
         <tr>
-          <td>{{elem[0]}}</td>
-          <td>{{elem[1]}}</td>
-          <td>{{elem[2]}}</td>
-          <td>{{elem[3]}}</td>
-          <td>{{elem[4]}}</td>
+            <td>{{elem[0]}}</td>
+            <td>{{elem[1]}}</td>
+            <td>{{elem[2]}}</td>
+            <td>{{elem[3]}}</td>
+            <td>{{elem[4]}}</td>
         </tr>
         {% endfor %}
-      </table>
-    </fieldset>
-    <fieldset>
-      <legend>Add Task</legend>
-      <form action="/user/task/add" method="POST">
-        <p>
-          <label for="task">Task name:</label>
-          <input name="task" id="task" value="" type="text" />
-        </p>
-        <p>
-          <label for="begin">Begin:</label>
-          <input name="begin" id="begin" value="" type="text" />
-        </p>
-        <p>
-          <label for="end">End:</label>
-          <input name="end" id="end" value="" type="text" />
-        </p>
-        <p>
-          <label for="status">Status:</label>
-          <input name="status" id="status" value="" type="text" />
-        </p>
+    </table>
+</fieldset>
+<fieldset>
+    <legend>Add Task</legend>
+    <form action="/user/task/add" method="POST">
+        <p><label for="task">Task name:</label>
+            <input name="task" id="task" value="" type="text" /></p>
+        <p><label for="begin">Begin:</label>
+            <input name="begin" id="begin" value="" type="text" /></p>
+        <p><label for="end">End:</label>
+            <input name="end" id="end" value="" type="text" /></p>
+        <p><label for="status">Status:</label>
+            <input name="status" id="status" value="" type="text" /></p>
         <button type="submit" value="submit">Submit</button>
-      </form>
-    </fieldset>
-  </div>
-</div>
+    </form>
+</fieldset>
 {% endblock %}
