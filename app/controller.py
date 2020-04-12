@@ -58,30 +58,20 @@ class Controller(object):
             begin = request.form['begin']
             end = request.form['end']
         try:
-            insert_stuff = (
-                "INSERT INTO task (title, begin, end, status) VALUES ('" + task + "','" + begin + "','" + end + "','0')"
-            )
-            connect = sql.connect(host='localhost',
-                            unix_socket='/var/lib/mysql/mysql.sock',
-                            user=user,
-                            passwd=pwd,
-                            db='epytodo')
-            cursor = connect.cursor()
-            cursor.execute(insert_stuff)
-            connect.commit()
-            cursor.close()
-            connect.close()
-        except Exception as e :
-            print("Caught  an  exception : ", e)
-        try:
+            if (task and begin and end):
                 connect = sql.connect(host='localhost',
-                            unix_socket='/var/lib/mysql/mysql.sock',
-                            user=user,
-                            passwd=pwd,
-                            db='epytodo')
+                                unix_socket='/var/lib/mysql/mysql.sock',
+                                user=user,
+                                passwd=pwd,
+                                db='epytodo')
                 cursor = connect.cursor()
-                task_id = cursor.execute("SELECT task_id FROM task ORDER BY task_id DESC")
-                cursor.execute("INSERT INTO user_has_task (fk_user_id, fk_task_id) VALUES ('" + str(self.user_id) + "','" + task_id + "')")
+                cursor.execute("INSERT INTO task (title, begin, end, status) VALUES ('" + task + "','" + begin + "','" + end + "','0')")
+                connect.commit()
+                try:
+                    task_id = cursor.execute("SELECT task_id FROM task ORDER BY task_id DESC")
+                    cursor.execute("INSERT INTO user_has_task (fk_user_id, fk_task_id) VALUES ('" + str(self.user_id) + "','" + task_id + "')")
+                except Exception as e :
+                    print("Caught  an  exception : ", e)
                 connect.commit()
                 cursor.close()
                 connect.close()
