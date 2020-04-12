@@ -20,7 +20,6 @@ class Controller(object):
         self.user_id = user_id
 
     def index_action(self):
-        print(self.user_id);
         return render_template("index.html")
 
     def register_action(self):
@@ -28,7 +27,7 @@ class Controller(object):
             username = request.form['username']
             password = request.form['password']
             if (len(username) == 0 or len(password) == 0):
-                return render_template("<alert>Invalid username or password</alert>")
+                return render_template("alerts/invalid_logs.html")
             try:
                 insert_stuff = (
                     "INSERT INTO user (username, password) VALUES ('" + username + "','" + password + "')"
@@ -47,12 +46,18 @@ class Controller(object):
                 print("Caught  an  exception : ", e)
         return render_template("register.html")
 
+    def signout_action(self):
+        if self.user_id != -1:
+            self.user_id = -1
+            return render_template("alerts/logged_out.html", username = self.username)
+        return render_template("/index.html")
+
     def signin_action(self):
         if request.method == 'POST':
             username = request.form['username']
             password = request.form['password']
-            if (len(username) == 0 or len(password) == 0):
-                return render_template("<alert>Invalid username or password</alert>")
+            # if (len(username) == 0 or len(password) == 0):
+            #     return render_template("alerts/invalid_logs.html")
             try:
                 connect = sql.connect(host='localhost',
                                 unix_socket='/var/lib/mysql/mysql.sock',
@@ -69,8 +74,9 @@ class Controller(object):
                     if i[1] == username:
                         if i[2] == password:
                             self.user_id = i[0]
-                            return render_template("index.html")
-                return render_template("<alert>Invalid username or password</alert>")
+                            self.username = username
+                            return render_template("alerts/logged_in.html", username = self.username)
+                return render_template("alerts/invalid_logs.html")
             except Exception as ex :
                 print("Caught  an  exception : ", ex)
         return render_template("signin.html")
