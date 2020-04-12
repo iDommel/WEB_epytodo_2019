@@ -58,7 +58,7 @@ class Controller(object):
         try:
             user = 'root'
             insert_stuff = (
-                "INSERT INTO task (title, begin, end, status) VALUES ('" + task + "', '" + begin + "', '" + end + "', '" + status + "')"
+                "INSERT INTO task (title, begin, end, status) VALUES ('" + task + "','" + begin + "','" + end + "','" + status + "')"
             )
             connect = sql.connect(host='localhost',
                             unix_socket='/var/lib/mysql/mysql.sock',
@@ -67,9 +67,9 @@ class Controller(object):
                             db='epytodo')##connect to database
             cursor = connect.cursor()
             cursor.execute(insert_stuff)##execution de la requete
+            connect.commit()
             cursor.close()
             connect.close()
-            print(insert_stuff)
         except Exception as e :
             print("Caught  an  exception : ", e)
         return self.display_task_action()
