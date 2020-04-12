@@ -27,17 +27,18 @@ class models(object):
             cursor.execute("INSERT INTO task (title, begin, end, status) VALUES ('" + task + "','" + begin + "','" + end + "','0')")
             connect.commit()
             try:
-                task_id = cursor.execute("SELECT task_id FROM task ORDER BY task_id DESC")
+                cursor.execute("SELECT task_id FROM task ORDER BY task_id DESC")
+                task_id = (cursor.fetchall())[0][0]
                 cursor.execute("INSERT INTO user_has_task (fk_user_id, fk_task_id) VALUES ('" + str(self.user_id) + "','" + str(task_id) + "')")
             except Exception as e :
                 print("Caught  an  exception : ", e)
-                print("has_task_fail")
+                print("'has_task' fail")
             connect.commit()
             cursor.close()
             connect.close()
         except Exception as e :
             print("Caught  an  exception : ", e)
-            print("add_task_fail")
+            print("'add_task' fail")
 
     def register_model(self, username, password):
         try:
@@ -48,12 +49,22 @@ class models(object):
                             passwd=pwd,
                             db='epytodo')
             cursor = connect.cursor()
+            cursor.execute("SELECT username FROM user")
+            select = cursor.fetchall()
+            for elem in select:
+                if elem[0] == username:
+                    cursor.close()
+                    connect.close()
+                    print (username + " ? " + elem[0])
+                    return render_template("alerts/invalid_logs_reg.html")
             cursor.execute(insert_stuff)
             connect.commit()
             cursor.close()
             connect.close()
+            return render_template("register.html")
         except Exception as e :
             print("Caught  an  exception : ", e)
+            return render_template("alerts/invalid_logs_reg.html")
 
     def display_task_model(self):
         try:

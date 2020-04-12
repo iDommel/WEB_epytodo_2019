@@ -1,4 +1,4 @@
-*
+/*
 !/app
 !.gitgnore
 !run.py
@@ -6,6 +6,6 @@
 !config.py
 
 /app/*
-!/static
-!/templates
+!/app/static
+!/app/templates
 !*.py
