@@ -31,29 +31,7 @@ def route_signout ():
 
 @app.route('/user', methods =['GET'])
 def route_all_users ():
-    try:
-        user = 'root'
-        insert_stuff = (
-            "INSERT INTO user (username, password)\
-            VALUES ('name','mdp')"
-        )
-        connect = sql.connect(host='localhost',
-                        unix_socket='/var/lib/mysql/mysql.sock',
-                        user=user,
-                        passwd='sdfmovieconquest1',
-                        db='epytodo')##connect to database
-        cursor = connect.cursor()
-        cursor.execute(insert_stuff)##execution de la requete
-        cursor.execute("SELECT * FROM user")##execution de la requete
-
-        result = cursor.fetchall()
-        connect.commit()
-        cursor.close()
-        connect.close()
-    except Exception as e :
-        print("Caught  an  exception : ", e)
-        result = 0
-    return jsonify(result)
+    return control.index_action()
 
 @app.route('/user/task', methods =['GET'])
 def route_view_tasks():

@@ -37,9 +37,9 @@ class Controller(object):
                                 unix_socket='/var/lib/mysql/mysql.sock',
                                 user=user,
                                 passwd=pwd,
-                                db='epytodo')##connect to database
+                                db='epytodo')
                 cursor = connect.cursor()
-                cursor.execute(insert_stuff)##execution de la requete
+                cursor.execute(insert_stuff)
                 connect.commit()
                 cursor.close()
                 connect.close()
@@ -58,9 +58,9 @@ class Controller(object):
                                 unix_socket='/var/lib/mysql/mysql.sock',
                                 user=user,
                                 passwd=pwd,
-                                db='epytodo')##connect to database
+                                db='epytodo')
                 cursor = connect.cursor()
-                cursor.execute("SELECT * FROM user")##execution de la requete
+                cursor.execute("SELECT * FROM user")
                 result = cursor.fetchall()
                 connect.commit()
                 cursor.close()
