@@ -75,8 +75,6 @@ class Controller(object):
                 print("Caught  an  exception : ", ex)
         return render_template("signin.html")
 
-
-
     def display_task_action(self):
         try:
             connect = sql.connect(host='localhost',
