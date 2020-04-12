@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!-- <link
-    rel="stylesheet"
-    href="{{ url_for('static', filename='css/styles.css') }}"
-  /> -->
   <head>
     <meta charset="utf-8" />
     <meta
@@ -23,18 +19,24 @@
   <body>
     {% set navlist = [ ('/', 'home', 'Home'), ('/register ', 'register ',
     'Register '), ('/user/task ', 'account ', 'Account ') ] -%}
-    <nav class="navbar navbar-expand-lg navbar-primary bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="row">
         <div class="col"><a class="navbar-brand">EpyTodo</a></div>
         {% for ref, name, caption in navlist %}
-          <div class="col">
-            <a class="nav-link dark" name="{{ name }}" href="{{ ref }}">{{ caption }}</a>
-          </div>
+        <div class="col">
+          <a class="nav-link text-light" name="{{ name }}" href="{{ ref }}"
+            >{{ caption }}</a
+          >
+        </div>
         {% endfor %}
       </div>
     </nav>
 
-    {% block content %}{% endblock %}
+    <div class="container-fluid">
+      <div class="container">
+        {% block content %}{% endblock %}
+      </div>
+    </div>
 
     <!-- Bootstrap scripts -->
     <script
