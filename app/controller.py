@@ -18,9 +18,10 @@ class Controller(object):
 
     def __init__(self, user_id):
         self.user_id = user_id
+        self.username = None
 
     def index_action(self):
-        return render_template("index.html")
+        return render_template("index.html", username = self.username)
 
     def register_action(self):
         if request.method == 'POST':
@@ -44,13 +45,13 @@ class Controller(object):
                 connect.close()
             except Exception as e :
                 print("Caught  an  exception : ", e)
-        return render_template("register.html")
+        return render_template("register.html", username = self.username)
 
     def signout_action(self):
         if self.user_id != -1:
             self.user_id = -1
             return render_template("alerts/logged_out.html", username = self.username)
-        return render_template("/index.html")
+        return render_template("/index.html", username = self.username)
 
     def signin_action(self):
         if request.method == 'POST':
@@ -79,8 +80,7 @@ class Controller(object):
                 return render_template("alerts/invalid_logs.html")
             except Exception as ex :
                 print("Caught  an  exception : ", ex)
-        else:
-            return render_template("signin.html")
+        return render_template("signin.html", username = self.username)
 
     def display_task_action(self):
         try:
@@ -99,7 +99,7 @@ class Controller(object):
             print("Caught  an  exception : ", ex)
             result = 0
         return render_template("tasks_view.html",
-                                tables = result)
+                                tables = result, username = self.username)
 
     def add_task_action(self):
         if request.method == 'POST':
