@@ -1,13 +1,14 @@
 
 {% extends "index.html" %}
 {% block content %}
-<p>
+<div class="container-fluid">
+    <div class="container">
     <fieldset>
         <legend>User tasks</legend>
         <table style="width:100%">
             <tr>
             <th>ID</th>
-            <th>TASK</th> 
+            <th>TASK</th>
             <th>BEGIN</th>
             <th>END</th>
             <th>STATUS</th>
@@ -37,5 +38,6 @@
             <button type="submit" value="submit">Submit</button>
         </form>
     </fieldset>
-</p>
+    </div>
+</div>
 {% endblock %}
